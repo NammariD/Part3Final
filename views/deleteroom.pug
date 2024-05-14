@@ -1,0 +1,41 @@
+doctype html
+html
+  head
+    title Delete Room
+    script(src='https://code.jquery.com/jquery-3.6.0.min.js')
+    
+  body
+
+    h1 Delete Room
+
+    form(id="delete-room-form")
+      div
+        label(for="roomname") Room Name:
+        input(type="text" name="roomname" id="roomname" value="")
+      br
+      button(type="submit") Delete Room
+
+    script.
+      $(document).ready(function() {
+        $('#delete-room-form').submit(function(event) {
+          event.preventDefault(); // Prevent the default form submission
+
+          const roomname = $('#roomname').val();
+          if (roomname) {
+            fetch('/rooms/roomname/' + roomname, {
+              method: 'DELETE',
+            })
+            .then(response => response.json())
+            .then(data => {
+              console.log(data);
+              alert(data.message);
+            })
+            .catch(error => {
+              console.error('Error:', error);
+              alert('An error occurred: ' + error.message);
+            });
+          } else {
+            alert('Please enter a room name');
+          }
+        });
+      });

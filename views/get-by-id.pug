@@ -1,0 +1,37 @@
+doctype html
+html
+  head
+    title Get Room by ID
+    script(src='https://code.jquery.com/jquery-3.6.0.min.js')
+  body
+    h1 Get Room by ID
+
+    form(id="get-room-form")
+      div
+        label(for="room-id") Room ID:
+        input(type="text", name="room-id", id="room-id")
+      br
+      button(type="submit") Get Room
+
+    script.
+      $(document).ready(function() {
+        $('#get-room-form').submit(function(event) {
+          event.preventDefault(); // Prevent the default form submission
+
+          const roomId = $('#room-id').val();
+          if (roomId) {
+            fetch('/rooms/' + roomId)
+              .then(response => response.json())
+              .then(data => {
+                console.log(data);
+                // Handle the response data here, e.g., display it on the page
+              })
+              .catch(error => {
+                console.error('Error:', error);
+                // Handle errors here, e.g., display an error message to the user
+              });
+          } else {
+            alert('Please enter a room ID');
+          }
+        });
+      });

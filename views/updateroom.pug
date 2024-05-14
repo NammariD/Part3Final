@@ -1,0 +1,58 @@
+doctype html
+html
+  head
+    title Update Room
+    script(src='https://code.jquery.com/jquery-3.6.0.min.js')
+  body
+    h1 Update Room
+
+    form(id="update-room-form")
+      div
+        label(for="room-id") Room ID:
+        input(type="text", name="room-id", id="room-id", value="")
+      div
+        label(for="room-name") New Room Name:
+        input(type="text", name="room-name", id="room-name", value="")
+      div
+        label(for="room-type") New Room Type:
+        input(type="text", name="room-type", id="room-type", value="")
+      div
+        label(for="room-state") New Room State:
+        input(type="text", name="room-state", id="room-state", value="")
+      br
+      button(type="submit") Update Room
+
+    script.
+      $(document).ready(function() {
+        $('#update-room-form').submit(function(event) {
+          event.preventDefault(); // Prevent the default form submission
+
+          const roomId = $('#room-id').val();
+          const roomName = $('#room-name').val();
+          const roomType = $('#room-type').val();
+          const roomState = $('#room-state').val();
+
+          const requestData = {
+            roomname: roomName,
+            type: roomType,
+            state: roomState
+          };
+
+          fetch(`/rooms/${roomId}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestData)
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+            alert(data.message);
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred: ' + error.message);
+          });
+        });
+      });

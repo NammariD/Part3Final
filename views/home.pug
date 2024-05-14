@@ -1,0 +1,41 @@
+doctype html
+html
+  head
+    title Button Example
+    script(src='https://code.jquery.com/jquery-3.6.0.min.js')
+  body
+    button(type='button' id='post-room') Post Room
+    button(type='button' id='delete-room') Delete
+    button(type='button' id='put-room') Put
+    button(type='button' id='rooms') Rooms (GET)
+    button(type='button' id='get-room-by-id') Get by id
+    button(type='button' id='get-room-by-roomname') Get by roomName
+
+    script.
+      $(document).ready(function() {
+        $('#post-room').click(function() {
+          window.location.href = '/postroom';
+        });
+
+        $('#delete-room').click(function() {
+          window.location.href = '/deleteroom';
+        });
+
+        $('#put-room').click(function() {
+          window.location.href = '/updateroom';
+        });
+
+        $('#rooms').click(function() {
+          window.location.href = '/rooms';
+        });
+
+        $('#get-room-by-id').click(function() {
+
+          window.location.href = '/get-by-id';
+        });
+
+        $('#get-room-by-roomname').click(function() {
+          
+          window.location.href = '/get-by-name';
+        });
+      });

@@ -1,0 +1,13 @@
+// show_message.pug
+doctype html
+html
+  head
+    title PostRoom
+  body
+    if type === "error"
+      h3(style="color:red") #{message}
+    else
+      h3 New room,
+        | Roomname: #{room.roomname},
+        | type: #{room.type} and
+        | state: #{room.state} added!

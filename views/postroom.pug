@@ -1,0 +1,21 @@
+
+
+html
+   head
+      title Person
+   body
+      h1 Create New Room
+      form(action = "/postroom", method = "POST")
+         div
+            label(for = "roomname") RoomName:
+            input(name = "roomname" value = "Programming")
+         br
+         div
+            label(for = "type") Type:
+            input(name = "type" value = "Private")
+         br
+         div 
+            label(for = "state") State:
+            input(name = "state" value = "Live")
+            br
+         button(type = "submit") Create new room
